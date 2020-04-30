@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -11,10 +11,13 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@frontend-sessions/ui": ["libs/ui/src/index.ts"],
+      "@frontend-sessions/profile-update": ["libs/profile-update/src/index.ts"],
+      "@frontend-sessions/models": ["libs/models/src/index.ts"]
+    },
+    "rootDir": "."
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

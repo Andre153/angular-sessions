@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
-  "newProjectRoot": "projects",
+  "version": 1,
+  "newProjectRoot": "",
   "projects": {
     "frontend-sessions": {
       "projectType": "application",
@@ -10,34 +10,32 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/frontend-sessions",
+      "sourceRoot": "apps/frontend-sessions/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/frontend-sessions",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/frontend-sessions",
+            "index": "apps/frontend-sessions/src/index.html",
+            "main": "apps/frontend-sessions/src/main.ts",
+            "polyfills": "apps/frontend-sessions/src/polyfills.ts",
+            "tsConfig": "apps/frontend-sessions/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/frontend-sessions/src/favicon.ico",
+              "apps/frontend-sessions/src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["apps/frontend-sessions/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/frontend-sessions/src/environments/environment.ts",
+                  "with": "apps/frontend-sessions/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -83,17 +81,15 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "apps/frontend-sessions/src/test.ts",
+            "polyfills": "apps/frontend-sessions/src/polyfills.ts",
+            "tsConfig": "apps/frontend-sessions/tsconfig.spec.json",
+            "karmaConfig": "apps/frontend-sessions/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/frontend-sessions/src/favicon.ico",
+              "apps/frontend-sessions/src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["apps/frontend-sessions/src/styles.scss"],
             "scripts": []
           }
         },
@@ -101,19 +97,22 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/frontend-sessions/tsconfig.app.json",
+              "apps/frontend-sessions/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
-        },
+        }
+      }
+    },
+    "frontend-sessions-e2e": {
+      "projectType": "application",
+      "root": "apps/frontend-sessions-e2e",
+      "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "protractorConfig": "apps/frontend-sessions-e2e/protractor.conf.js",
             "devServerTarget": "frontend-sessions:serve"
           },
           "configurations": {
@@ -121,8 +120,106 @@
               "devServerTarget": "frontend-sessions:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/frontend-sessions-e2e/tsconfig.json",
+            "exclude": ["**/node_modules/**"]
+          }
         }
       }
-    }},
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "frontend-sessions",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "profile-update": {
+      "projectType": "library",
+      "root": "libs/profile-update",
+      "sourceRoot": "libs/profile-update/src",
+      "prefix": "frontend-sessions",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/profile-update/tsconfig.lib.json",
+              "libs/profile-update/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/profile-update/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/profile-update/jest.config.js",
+            "tsConfig": "libs/profile-update/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/profile-update/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "models": {
+      "root": "libs/models",
+      "sourceRoot": "libs/models/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/models/tsconfig.lib.json",
+              "libs/models/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/models/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/models/jest.config.js",
+            "tsConfig": "libs/models/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "frontend-sessions"
 }
