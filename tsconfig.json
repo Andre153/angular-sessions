@@ -15,7 +15,8 @@
     "paths": {
       "@frontend-sessions/ui": ["libs/ui/src/index.ts"],
       "@frontend-sessions/profile-update": ["libs/profile-update/src/index.ts"],
-      "@frontend-sessions/models": ["libs/models/src/index.ts"]
+      "@frontend-sessions/models": ["libs/models/src/index.ts"],
+      "@frontend-sessions/abstractions": ["libs/abstractions/src/index.ts"]
     },
     "rootDir": "."
   },

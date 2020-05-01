@@ -6,9 +6,9 @@ export enum PROFILE_UPDATE_PAGE {
   COMPLETE
 }
 
-export class InitialUserProfile implements IUserProfile {
-  email: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
+export const InitialUserProfile: IUserProfile = {
+  email: '',
+  firstName: '',
+  lastName: '',
+  phoneNumber: ''
 }

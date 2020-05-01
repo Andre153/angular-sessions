@@ -22,6 +22,9 @@
     },
     "models": {
       "tags": []
+    },
+    "abstractions": {
+      "tags": []
     }
   }
 }

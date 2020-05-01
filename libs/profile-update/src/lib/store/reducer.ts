@@ -11,7 +11,7 @@ export interface IProfileUpdateState extends IFeatureState {
 }
 
 export const initialState: IProfileUpdateState = {
-  profile: new InitialUserProfile(),
+  profile: InitialUserProfile,
   page: PROFILE_UPDATE_PAGE.BASIC,
   isLoading: false
 };
@@ -22,15 +22,17 @@ export const profileUpdateReducer = createReducer(
     ...initialState
   })),
   on(fromActions.updateProfile, (state, {profile}) => ({
+    ...state,
     profile,
     isLoading: true
   })),
   on(fromActions.updateProfileSuccess, (state) => ({
-    ...initialState,
+    ...state,
+    page: state.page + 1,
     isLoading: false,
   })),
   on(fromActions.updateProfileFailure, (state, {error}) => ({
-    ...initialState,
+    ...state,
     error,
     isLoading: false,
   })),

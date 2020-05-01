@@ -219,6 +219,38 @@
           }
         }
       }
+    },
+    "abstractions": {
+      "projectType": "library",
+      "root": "libs/abstractions",
+      "sourceRoot": "libs/abstractions/src",
+      "prefix": "frontend-sessions",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/abstractions/tsconfig.lib.json",
+              "libs/abstractions/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/abstractions/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/abstractions/jest.config.js",
+            "tsConfig": "libs/abstractions/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/abstractions/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "defaultProject": "frontend-sessions"

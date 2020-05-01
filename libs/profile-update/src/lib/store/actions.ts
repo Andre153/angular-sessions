@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {IUserProfile} from '@frontend-sessions/models';
+import {PROFILE_UPDATE_PAGE} from '../models/profile-update.models';
 
 export const loadType = (name: string) => `[Profile Update] ${name}`;
 

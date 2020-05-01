@@ -14,10 +14,13 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('loading this page');
     this.store.page$
       .pipe(
-        tap((page: PROFILE_UPDATE_PAGE) =>
-          this._routePage(page))
+        tap((page: PROFILE_UPDATE_PAGE) => {
+          console.log(page);
+          this._routePage(page);
+        })
       ).subscribe();
   }
 
@@ -25,6 +28,14 @@ export class ProfileUpdateComponent implements OnInit {
     switch (page) {
       case PROFILE_UPDATE_PAGE.BASIC: {
         this.router.navigate(['basic-information']);
+        break;
+      }
+      case PROFILE_UPDATE_PAGE.CONTACT: {
+        this.router.navigate(['contact-information']);
+        break;
+      }
+      case PROFILE_UPDATE_PAGE.COMPLETE: {
+        this.router.navigate(['complete']);
         break;
       }
       default: {break; }
