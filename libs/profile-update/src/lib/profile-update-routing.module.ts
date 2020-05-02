@@ -12,6 +12,9 @@ const routes: Routes = [{
     }, {
       path: 'contact-information',
       loadChildren: () => import('../lib/pages/contact-information/contact-information.module').then(m => m.ContactInformationModule)
+    }, {
+    path: 'confirmation',
+      loadChildren: () => import('../lib/pages/update-confirmation/update-confirmation.module').then(m => m.UpdateConfirmationModule)
     }
   ]
 }];

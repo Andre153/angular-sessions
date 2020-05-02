@@ -14,13 +14,9 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('loading this page');
     this.store.page$
       .pipe(
-        tap((page: PROFILE_UPDATE_PAGE) => {
-          console.log(page);
-          this._routePage(page);
-        })
+        tap((page: PROFILE_UPDATE_PAGE) => this._routePage(page))
       ).subscribe();
   }
 
@@ -35,7 +31,7 @@ export class ProfileUpdateComponent implements OnInit {
         break;
       }
       case PROFILE_UPDATE_PAGE.COMPLETE: {
-        this.router.navigate(['complete']);
+        this.router.navigate(['confirmation']);
         break;
       }
       default: {break; }
